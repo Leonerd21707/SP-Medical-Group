@@ -1,17 +1,23 @@
 USE SP_MEDIC_GROUP_DEV_MANHA
 
-CREATE VIEW sp_medgroup
-AS 
-SELECT ID, NOME
-FROM ESPECIALIZACAO
-
-SELECT * FROM ESPECIALIZACAO
-
-select * from TIPO_USUARIO
-
-select * from CONSULTA
 
 
+--Retorna à quantidade de médicos de uma determinada especialidade
+SELECT COUNT(*) AS ID_ESPECIALIZACAO FROM MEDICO WHERE ID_ESPECIALIZACAO='17'
 
---insert into TIPO_USUARIO values ('Administrador'), ('Paciente'), ('Médico')
+--exibi o nome dos medicos e o nome de suas especialidades
+SELECT M.NOME [MEDICO], E.NOME AS [ESPECIALIDADE]
+FROM MEDICO AS M
+INNER JOIN ESPECIALIZACAO AS E ON M.ID = E.ID
+
+--Cria uma função que calcula a idade do paciente
+CREATE PROCEDURE calcular_idade
+AS
+SELECT NOME, DATA_NASCIMENTO, YEAR (GETDATE()) - YEAR (DATA_NASCIMENTO) FROM PRONTUARIO
+GO;
+
+--Executa a função em que calcula a idade do paciente
+exec calcular_idade
+
+
 
