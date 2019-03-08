@@ -1,0 +1,14 @@
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\bin\Debug\netcoreapp2.1\SP.Medical.Group.Manha.deps.json
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\bin\Debug\netcoreapp2.1\SP.Medical.Group.Manha.runtimeconfig.json
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\bin\Debug\netcoreapp2.1\SP.Medical.Group.Manha.runtimeconfig.dev.json
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\bin\Debug\netcoreapp2.1\SP.Medical.Group.Manha.dll
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\bin\Debug\netcoreapp2.1\SP.Medical.Group.Manha.pdb
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\obj\Debug\netcoreapp2.1\SP.Medical.Group.Manha.csprojAssemblyReference.cache
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\obj\Debug\netcoreapp2.1\SP.Medical.Group.Manha.csproj.CoreCompileInputs.cache
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\obj\Debug\netcoreapp2.1\SP.Medical.Group.Manha.RazorAssemblyInfo.cache
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\obj\Debug\netcoreapp2.1\SP.Medical.Group.Manha.RazorAssemblyInfo.cs
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\obj\Debug\netcoreapp2.1\SP.Medical.Group.Manha.AssemblyInfoInputs.cache
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\obj\Debug\netcoreapp2.1\SP.Medical.Group.Manha.AssemblyInfo.cs
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\obj\Debug\netcoreapp2.1\SP.Medical.Group.Manha.RazorTargetAssemblyInfo.cache
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\obj\Debug\netcoreapp2.1\SP.Medical.Group.Manha.dll
+C:\Users\51963902866\Documents\projetos\MedicalGroup-master\BackEnd\SP.Medical.Group.Manha\SP.Medical.Group.Manha\obj\Debug\netcoreapp2.1\SP.Medical.Group.Manha.pdb
