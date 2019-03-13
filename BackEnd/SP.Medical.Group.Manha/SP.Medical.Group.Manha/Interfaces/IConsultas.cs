@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace SP.Medical.Group.Manha.Interfaces
 {
-    interface IUsuario
+    interface IConsultas
     {
-        //Cadastra um novo usuario
-        void Cadastrar(Usuario User);
-
-        Usuario BuscarPorEmailSenha(string email, string senha);
+        //Cadastra uma nova consulta
+        void Cadastrar(Consulta consulta);
     }
 }

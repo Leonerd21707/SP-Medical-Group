@@ -5,20 +5,29 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SP.Medical.Group.Manha.Domains;
+using SP.Medical.Group.Manha.Interfaces;
+using SP.Medical.Group.Manha.Repositories;
 
 namespace SP.Medical.Group.Manha.Controllers
-{
+{    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ConsultaController : ControllerBase
     {
-        // SqlConnection (conexao) + SqlCommand (comando select)
+        
+        private IConsultas ConsultasRepository { get; set; }
+
+        public ConsultaController()
+        {
+            ConsultasRepository = new ConsultasRepository();
+        }
+        
+        // Lista todas as consultas agendadas
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
-                // dentro do MedGroup, há tudo o que preciso 
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
                     return Ok(ctx.Consulta.ToList());
@@ -28,6 +37,24 @@ namespace SP.Medical.Group.Manha.Controllers
             {
                 return BadRequest();
             }
+        }       
+
+        //cadastra uma nova consulta
+        [HttpPost]
+        public IActionResult Post(Consulta consulta)
+        {
+            try
+            {
+                ConsultasRepository.Cadastrar(consulta);
+                return Ok();
+
+      
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            
         }
     }
 }
