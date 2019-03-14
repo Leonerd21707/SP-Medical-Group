@@ -14,23 +14,22 @@ namespace SP.Medical.Group.Manha.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class ClinicaController : ControllerBase
     {
-        private IUsuario UsuarioRepository { get; set; }
+        private IClinica ClinicaRepository { get; set; }
 
-        public UsuarioController()
+        public ClinicaController()
         {
-            UsuarioRepository = new UsuarioRepository();
+            ClinicaRepository = new ClinicaRepository();
         }
-
-        //Cadastra um novo Usuario
+        //cadastra uma nova clinica
         [Authorize(Roles = "1")]
         [HttpPost]
-        public IActionResult Post(Usuario User)
+        public IActionResult Post(Clinica clinica)
         {
             try
             {
-                UsuarioRepository.Cadastrar(User);
+                ClinicaRepository.Cadastrar(clinica);
                 return Ok();
             }
             catch

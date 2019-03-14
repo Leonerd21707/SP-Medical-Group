@@ -11,11 +11,7 @@ namespace SP.Medical.Group.Manha.Repositories
         {
             using (MedGroupContext ctx = new MedGroupContext())
             {
-                ctx.Usuario.Find(email, senha);
-
                 return ctx.Usuario.ToList().Find(i => i.Email == email && i.Senha == senha);
-                   
-
              }
         }
 

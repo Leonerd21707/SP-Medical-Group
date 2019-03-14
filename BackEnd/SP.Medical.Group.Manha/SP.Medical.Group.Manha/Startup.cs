@@ -53,13 +53,13 @@ namespace SP.Medical.Group.Manha
 
                     ValidateLifetime = true,
 
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("svigufo-chave-autenticacao")),
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Medical-Group-chave")),
 
                     ClockSkew = TimeSpan.FromMinutes(30),
 
-                    ValidIssuer = "SviGufo.WebApi",
+                    ValidIssuer = "MedGroup.WebApi",
 
-                    ValidAudience = "SviGufo.WebApi"
+                    ValidAudience = "MedGroup.WebApi"
                 };
             });
 
@@ -73,7 +73,7 @@ namespace SP.Medical.Group.Manha
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SviGufo");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MedGroup");
             });
 
             app.UseAuthentication();

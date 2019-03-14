@@ -45,12 +45,10 @@ namespace SP.Medical.Group.Manha.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Email, User.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, User.Id.ToString()),
-                    // é a permissão do usuário
-                    new Claim(ClaimTypes.Role, User.IdTipo.ToString()),
-                    new Claim("teste", "lasanha")
+                    new Claim(ClaimTypes.Role, User.IdTipo.ToString())
                 };
 
-                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("MedGroup-chave"));
+                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Medical-Group-chave"));
 
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -66,12 +64,9 @@ namespace SP.Medical.Group.Manha.Controllers
                     token = new JwtSecurityTokenHandler().WriteToken(token)
                 });
             }
-            catch
+            catch(Exception xx)
             {
-                return BadRequest(new
-                {
-                    mensagem = "Deu erro!!!"
-                });
+                return BadRequest(xx.Message);
             }
         }
     }
