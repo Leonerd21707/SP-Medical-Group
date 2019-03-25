@@ -24,8 +24,8 @@ namespace SP.Medical.Group.Manha.Controllers
         }
         
         // Lista todas as consultas agendadas
-        [Authorize(Roles = "1")]
-        [HttpGet]
+        [Authorize(Roles = "Administrador")]
+        [HttpGet("todos")]
         public IActionResult Get()
         {
             try
@@ -42,7 +42,7 @@ namespace SP.Medical.Group.Manha.Controllers
         }       
 
         //cadastra uma nova consulta
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         public IActionResult Post(Consulta consulta)
         {
@@ -57,9 +57,10 @@ namespace SP.Medical.Group.Manha.Controllers
             }
         }
 
-        [Authorize(Roles = "1")]
+        //Altera os dados da consulta
+        [Authorize(Roles = "Administrador")]
         [HttpPut]
-        public IActionResult put(Consulta consulta)
+        public IActionResult Put(Consulta consulta)
         {
             try
             {
@@ -71,8 +72,10 @@ namespace SP.Medical.Group.Manha.Controllers
                 return BadRequest();
             }
         }
-        [Authorize (Roles ="3")]
-        [HttpGet]
+
+        //Lista todas as consultas do medico
+        [Authorize (Roles ="Médico")]
+        [HttpGet("medico/{IdBuscado}")]
         public IActionResult GetConsultaMedico(int IdBuscado)
         {
             try
@@ -85,8 +88,9 @@ namespace SP.Medical.Group.Manha.Controllers
             }
         }
 
-        [Authorize(Roles = "2")]
-        [HttpGet]
+        //Lista todas as consultas do paciente
+        [Authorize(Roles = "Paciente")]
+        [HttpGet("paciente/{IdBuscado}")]
         public IActionResult GetConsultaPaciente(int IdBuscado)
         {
             try

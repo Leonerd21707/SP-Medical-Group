@@ -26,11 +26,13 @@ namespace SP.Medical.Group.Manha.Controllers
             UsuarioRepository = new UsuarioRepository();
         }
 
+        //Loga um usuario ja cadastrado 
         [HttpPost]
         public IActionResult Post(LoginViewModel login)
         {
             try
             {
+                //busca o usuario por email e senha
                 Usuario User = UsuarioRepository.BuscarPorEmailSenha(login.Email, login.Senha);
 
                 if (User == null)
@@ -45,7 +47,7 @@ namespace SP.Medical.Group.Manha.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Email, User.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, User.Id.ToString()),
-                    new Claim(ClaimTypes.Role, User.IdTipo.ToString())
+                    new Claim(ClaimTypes.Role, User.IdTipoNavigation.Nome.ToString())
                 };
 
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Medical-Group-chave"));

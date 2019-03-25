@@ -33,7 +33,7 @@ namespace SP.Medical.Group.Manha
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "SviGufo API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "MedGroup", Version = "v1" });
             });
 
             services.AddAuthentication(options =>
@@ -69,6 +69,11 @@ namespace SP.Medical.Group.Manha
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>

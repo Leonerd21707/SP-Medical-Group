@@ -22,9 +22,26 @@ namespace SP.Medical.Group.Manha.Controllers
         {
             UsuarioRepository = new UsuarioRepository();
         }
+        // Lista todas os usuarios
+        [Authorize(Roles = "Administrador")]
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {
+                using (MedGroupContext ctx = new MedGroupContext())
+                {
+                    return Ok(ctx.Usuario.ToList());
+                }
+            }
+            catch (Exception XS)
+            {
+                return BadRequest(XS.Message);
+            }
+        }
 
         //Cadastra um novo Usuario
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         public IActionResult Post(Usuario User)
         {

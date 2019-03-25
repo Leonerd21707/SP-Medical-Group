@@ -1,4 +1,5 @@
-﻿using SP.Medical.Group.Manha.Domains;
+﻿using Microsoft.EntityFrameworkCore;
+using SP.Medical.Group.Manha.Domains;
 using SP.Medical.Group.Manha.Interfaces;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace SP.Medical.Group.Manha.Repositories
         {
             using (MedGroupContext ctx = new MedGroupContext())
             {
-                return ctx.Usuario.ToList().Find(i => i.Email == email && i.Senha == senha);
+                return ctx.Usuario.Include(i => i.IdTipoNavigation).First(i => i.Email == email && i.Senha == senha);
              }
         }
 

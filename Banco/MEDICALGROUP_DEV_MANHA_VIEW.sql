@@ -19,5 +19,4 @@ GO;
 --Executa a função em que calcula a idade do paciente
 exec calcular_idade
 
-
-
+SELECT * FROM TIPO_USUARIO

@@ -23,7 +23,7 @@ namespace SP.Medical.Group.Manha.Controllers
             ClinicaRepository = new ClinicaRepository();
         }
         //cadastra uma nova clinica
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         public IActionResult Post(Clinica clinica)
         {
