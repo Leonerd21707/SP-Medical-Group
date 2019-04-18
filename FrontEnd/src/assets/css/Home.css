@@ -1,0 +1,86 @@
+
+body{
+    background-image:url(../img/FUndo-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+a{
+    font-size: 20px;
+    color:white;
+    margin-right: 12px;
+}
+a:hover{
+    color: black;
+}
+.h1App{display: grid;
+    grid-template-columns: 30% 30%;
+    margin-top: -120px;
+    margin-left:270px;
+    font-size: 70px;
+}
+
+h3{
+    display: flex;
+    margin-left: 150px;
+    margin-top: 12px;
+}
+
+img{
+    width:170px;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.logo{
+    display: grid;
+    grid-column: 2;
+    text-align: center;
+    }
+.container{
+    margin-left: 10%;
+
+}
+.cabecalho-principal-nav{
+    display: grid;
+    grid-template-columns:  20% 20% 20% 20% 20%;  
+    margin: 21px;
+    padding: 10px;
+}
+
+
+.area-login{
+    margin: 5% 0% 10% 27% ;  
+     border-style: solid;
+    color: white;
+    width: 640px;
+    height: 700px;
+}
+.formApp{
+    padding-top: 275px;
+}
+input{
+    margin-top: 0;
+}
+.inpu_login{
+    margin-left: 150px;
+    width: 350px;
+    height: 50px;
+}
+
+.input_login{
+    margin-left: 150px;
+    width: 350px;
+    height: 50px;
+}
+
+button{
+    background-color: aquamarine;
+    margin-top: 40px;
+    width: 100px;
+    height: 50px;
+    margin-left: 270px;
+}
+
+.logoApp{
+    height: 0px;
+}

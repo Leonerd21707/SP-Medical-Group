@@ -1,0 +1,52 @@
+
+.h1User{
+    margin-top: 100px;
+    color: white;
+    font-size: 50px;
+}
+a{
+    text-decoration: none;
+    font-size: 20px;
+    color:white;
+    margin-right: 12px;
+}
+
+a:hover{
+    color: black;
+}
+.container{
+    margin-left: 21%;
+
+}
+.containers{
+    margin-top: -100px;
+    margin-left: 60px;
+
+}
+.formUser{
+    margin-top: 115px;
+}
+.cabecalho-principal-nav{
+    display: grid;
+    grid-template-columns: 15% 15% 15% 15% 15% 15%;  
+    margin: 21px;
+    padding: 10px;
+}
+
+.area-cadastro{
+    margin: 5% 0% 10% 25%;
+    border-style: solid;
+    color: white;
+    width: 750px;
+    height: 720px;
+}
+.logoUser{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-column-gap: 15%;
+}
+.options{
+    margin-left: 150px;
+    width: 350px;
+    height: 50px;
+}
