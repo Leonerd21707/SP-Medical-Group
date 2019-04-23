@@ -1,0 +1,15 @@
+
+body{
+    background-image:url(../img/FUndo-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.h1consultas{
+    color: white;
+    display: grid;
+    grid-template-columns: 30% 30%;
+    margin-top: -120px;
+    margin-left:270px;
+    font-size: 70px;
+}

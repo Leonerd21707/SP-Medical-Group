@@ -52,7 +52,7 @@ class App extends Component {
           <div className="container">
             <nav className="cabecalho-principal-nav">
               <div className="abas"><a>clinicas</a></div>
-              <div className="abas"><a>Consultas</a></div>
+              <div className="abas"><a href="/consultas">Consultas</a></div>
               <div className="abas"><a href="/Usuarios">Usuarios</a></div>
               <div className="abas"><a>Prontuario</a></div>
               <div className="abas"><a>Medicos</a></div>
