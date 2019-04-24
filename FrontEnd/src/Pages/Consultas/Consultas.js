@@ -10,19 +10,25 @@ class Consultas extends Component {
         super();
 
         this.state = {
-            prontuario: "",
-            medico: "",
+            idProntuario: "",
+            idMedico: "",
             descricao: "",
-            data: "",
-            status: ""
+            dataConsulta: "",
+            idStatus: "",
+            listaConsultas: []
         };
     }
 
-    listarCOnsultas() {
-        fetch("https://localhost:5001/api/consultas")
+    listaConsultas() {
+        fetch("http://localhost:5000/api/consulta/todos", { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
+            .then(console.log(`Bearer ${localStorage.getItem("Usuario-MedGroup")}`))
             .then(resposta => resposta.json())
-            .then(data => console.log(data))
+            .then(data => this.setState({ listaConsultas: data }, console.log("data" + data)))
             .catch((erro) => console.log(erro))
+    }
+
+    componentDidMount() {
+        this.listaConsultas();
     }
 
     render() {
@@ -42,45 +48,47 @@ class Consultas extends Component {
 
                 </header>
                 <main>
-                    <div className="ListarConsultas">
-                        <div className="logoConsultas">
-                            <img src={logo} /><h1 className="h1consultas">Listar Consultas</h1>
+                    <section className="Conteudo-principal-consulta">
+                        <div className="ListaConsultas">
+                            <div className="logoConsultas">
+                                <img src={logo} /><h1 className="h1consultas">Listar Consultas</h1>
+                            </div>
+
+                            <table className="tabela-lista">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Prontuario</th>
+                                        <th>Medico</th>
+                                        <th>Data</th>
+                                        <th>Status</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tabela-lista-corpo">
+                                    {
+                                        this.state.listaConsultas.map(function (consultas) {
+                                            return (
+                                                <tr key={consultas.id}>
+                                                    <td>{consultas.id}</td>
+                                                    <td>{consultas.idProntuario}</td>
+                                                    <td>{consultas.idMedico}</td>
+                                                    <td>{consultas.dataConsulta}</td>
+                                                    <td>{consultas.idStatus}</td>
+                                                    <td>{consultas.descricao}</td>
+
+                                                </tr>
+                                            );
+                                        })
+                                    }
+
+                                </tbody>
+
+                            </table>
+
                         </div>
-
-                        <table className="tabela-lista">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Prontuario</th>
-                                    <th>Medico</th>
-                                    <th>Descrição</th>
-                                    <th>Data</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-
-                            <tbody id="tabela-lista-corpo">
-                                {
-                                    this.state.listaConsultas.map(function (consultas) {
-                                        return (
-                                            <tr key={Consultas.id}>
-                                                <td>{consultas.id}</td>
-                                                <td>{consultas.prontuario}</td>
-                                                <td>{consultas.medico}</td>
-                                                <td>{consultas.descricao}</td>
-                                                <td>{consultas.data}</td>
-                                                <td>{consultas.status}</td>
-
-                                            </tr>
-                                        );
-                                    })
-                                }
-
-                            </tbody>
-
-                        </table>
-
-                    </div>
+                    </section>
                 </main>
             </div>
         );

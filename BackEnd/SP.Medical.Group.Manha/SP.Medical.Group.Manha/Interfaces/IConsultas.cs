@@ -8,6 +8,8 @@ namespace SP.Medical.Group.Manha.Interfaces
 {
     interface IConsultas
     {
+        List<Consulta> Consultas(int IdBuscado);
+
         List<Consulta> ConsultaMedico(int IdBuscado);
 
         List<Consulta> ConsultaPaciente(int IdBuscado);

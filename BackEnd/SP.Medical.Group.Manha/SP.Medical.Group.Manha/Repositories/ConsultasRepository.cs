@@ -9,6 +9,7 @@ namespace SP.Medical.Group.Manha.Repositories
 {
     public class ConsultasRepository : IConsultas
 
+       
         //Cadastra uma nova consulta
     {
         public void Cadastrar(Consulta consulta)
@@ -36,6 +37,18 @@ namespace SP.Medical.Group.Manha.Repositories
             {
                 return ctx.Consulta.Where(c => c.IdProntuarioNavigation.Id == IdBuscado).ToList();
             }
+        }
+
+        public List<Consulta> Consultas(int IdBuscado)
+        {
+            
+            
+                using (MedGroupContext ctx = new MedGroupContext())
+                {
+
+                return ctx.Consulta.Where(c => c.IdProntuarioNavigation == IdBuscado).ToList();
+                }
+            
         }
 
         //Atualiza os dados da consulta

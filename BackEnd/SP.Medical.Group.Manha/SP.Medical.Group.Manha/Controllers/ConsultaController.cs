@@ -18,6 +18,7 @@ namespace SP.Medical.Group.Manha.Controllers
     {
         private IConsultas ConsultasRepository { get; set; }
 
+
         public ConsultaController()
         {
             ConsultasRepository = new ConsultasRepository();
@@ -26,13 +27,13 @@ namespace SP.Medical.Group.Manha.Controllers
         // Lista todas as consultas agendadas
         [Authorize(Roles = "Administrador")]
         [HttpGet("todos")]
-        public IActionResult Get()
+        public IActionResult Get(int IdBuscado)
         {
             try
             {
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
-                    return Ok(ctx.Consulta.ToList());
+                    return Ok(ConsultasRepository.Consultas( IdBuscado));
                 }
             }
             catch(Exception XS) 
