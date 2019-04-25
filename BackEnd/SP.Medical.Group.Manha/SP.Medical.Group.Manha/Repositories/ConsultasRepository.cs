@@ -1,4 +1,5 @@
-﻿using SP.Medical.Group.Manha.Domains;
+﻿using Microsoft.EntityFrameworkCore;
+using SP.Medical.Group.Manha.Domains;
 using SP.Medical.Group.Manha.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace SP.Medical.Group.Manha.Repositories
         {           
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
-                    return ctx.Consulta.Where(c => c.IdMedicoNavigation.Id == IdBuscado).ToList();
+                    return ctx.Consulta.Where(c => c.IdMedicoNavigation.Id == IdBuscado).Include(c => c.IdMedicoNavigation).Include(a => a.IdProntuarioNavigation).Include(s => s.IdStatusNavigation).ToList();
                 }
         }
 
@@ -41,14 +42,11 @@ namespace SP.Medical.Group.Manha.Repositories
 
         public List<Consulta> Consultas(int IdBuscado)
         {
-            
-            
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
-
-                return ctx.Consulta.Where(c => c.IdProntuarioNavigation == IdBuscado).ToList();
+                //return ctx.Consulta.ToList();
+                return ctx.Consulta.Include(t => t.IdProntuarioNavigation).Include(m => m.IdMedicoNavigation).Include(s => s.IdStatusNavigation).ToList();
                 }
-            
         }
 
         //Atualiza os dados da consulta

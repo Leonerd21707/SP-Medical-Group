@@ -5,30 +5,31 @@ import logo from "../../assets/img/icon-login.png";
 import { usuarioAutenticado } from '../../Services/auth';
 import { _extend } from 'util';
 
-class Consultas extends Component {
+class ConsultasMedico extends Component {
     constructor() {
         super();
 
         this.state = {
+            IdBuscado: { usuarioAutenticado },
             idProntuario: "",
             idMedico: "",
             descricao: "",
             dataConsulta: "",
             idStatus: "",
-            listaConsultas: []
+            listaConsultasMedico: []
         };
     }
 
-    listaConsultas() {
-        fetch("http://localhost:5000/api/consulta/todos", { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
+    listaConsultasMedico() {
+        fetch("http://localhost:5000/api/consulta/medico/{IdBuscado}", { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
             .then(console.log(`Bearer ${localStorage.getItem("Usuario-MedGroup")}`))
             .then(resposta => resposta.json())
-            .then(data => this.setState({ listaConsultas: data }, console.log(data)))
+            .then(data => this.setState({ listaConsultasMedico: data }, console.log(data)))
             .catch((erro) => console.log(erro))
     }
 
     componentDidMount() {
-       this.listaConsultas();
+        this.listaConsultasMedico();
     }
 
     render() {
@@ -68,7 +69,7 @@ class Consultas extends Component {
 
                                 <tbody id="tabela-lista-corpo">
                                     {
-                                        this.state.listaConsultas.map(function (consultas) {
+                                        this.state.listaConsultasMedico.map(function (consultas) {
                                             return (
                                                 <tr key={consultas.id}>
                                                     <td>{consultas.id}</td>
@@ -95,4 +96,4 @@ class Consultas extends Component {
     }
 
 }
-export default Consultas;
+export default ConsultasMedico;

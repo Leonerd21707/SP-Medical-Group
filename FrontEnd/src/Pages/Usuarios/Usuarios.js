@@ -12,25 +12,10 @@ class Usuarios extends Component {
         super();
 
         this.state = {
-            tipoUsuario: 1,
+            tipoUsuario: '',
             Email: "",
             Senha: ""
         };
-    }
-
-    cadastrarUsuario() {
-        fetch('http://localhost:5000/api/usuario', {
-            method: 'POST', body: JSON.stringify({
-                tipoUsuario: this.state.tipoUsuario, email: this.state.Email, senha: this.state.senha
-            }), headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer" + localStorage.setItem("Usuario-MedGroup")
-            },
-
-        })
-            .then(resposta => resposta.json())
-            .then(data => (alert('Usuario Cadastrado'), data))
-            .catch((erro) => console.log(erro))
     }
 
     atualizaEstadoTipoUsuario(event) {
@@ -55,7 +40,18 @@ class Usuarios extends Component {
             email: this.state.Email,
             senha: this.state.Senha
         }
-        console.log(evento);
+        console.log(localStorage.getItem("Usuario-MedGroup"))
+
+        fetch('http://localhost:5000/api/usuario', {
+            method: 'POST', body: JSON.stringify(evento), headers: {
+                "Content-Type ": "application/json",
+                "Authorization ": "Bearer " + localStorage.getItem("Usuario-MedGroup")
+            }
+
+        })
+            .then(resposta => console.log(resposta.json()))
+            .then(data => alert(data))
+            .catch((erro) => console.log(erro))
     }
 
     render() {
@@ -85,6 +81,7 @@ class Usuarios extends Component {
 
                                 value={this.state.tipoUsuario}
                                 onChange={this.atualizaEstadoTipoUsuario.bind(this)}>
+                                <option value={null}>Selecione o tipo de Usuario</option>
                                 <option value={1}>Administrador</option>
                                 <option value={2}>Paciente</option>
                                 <option value={3}>Medico</option>
@@ -116,7 +113,7 @@ class Usuarios extends Component {
                                     id="login_password"
                                 />
                             </div>
-                            <button className="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro">
+                            <button type="submit" className="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro">
                                 Cadastrar
                             </button>
                         </div>
