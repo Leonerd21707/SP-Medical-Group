@@ -21,7 +21,7 @@ td{
 .logoConsultas{
     margin-left:18%
 }
-.h1consultas{
+.h2consultas{
     color: white;
     display: grid;
     grid-template-columns: 80% 20%;

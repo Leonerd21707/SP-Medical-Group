@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import "../../assets/css/Usuarios.css";
+import Axios from "axios";
 
 import logo from "../../assets/img/icon-login.png";
 import { usuarioAutenticado } from '../../Services/auth';
@@ -34,24 +35,18 @@ class Usuarios extends Component {
 
     cadastrarUsuario(event) {
         event.preventDefault();
+        
 
-        let evento = {
+        Axios.post("http://localhost:5000/api/usuario", 
+        {
             tipoUsuario: this.state.tipoUsuario,
             email: this.state.Email,
             senha: this.state.Senha
-        }
-        console.log(localStorage.getItem("Usuario-MedGroup"))
+        }).then(resposta => resposta.json())
+        .then(data => console.log(data))
+        .catch((erro) => console.log(erro))
 
-        fetch('http://localhost:5000/api/usuario', {
-            method: 'POST', body: JSON.stringify(evento), headers: {
-                "Content-Type ": "application/json",
-                "Authorization ": "Bearer " + localStorage.getItem("Usuario-MedGroup")
-            }
-
-        })
-            .then(resposta => console.log(resposta.json()))
-            .then(data => alert(data))
-            .catch((erro) => console.log(erro))
+        
     }
 
     render() {
