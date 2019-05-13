@@ -10,11 +10,11 @@ class Consultas extends Component {
         super();
 
         this.state = {
-            idProntuario: "",
-            idMedico: "",
+            IdProntuario: "",
+            IdMedico: "",
             descricao: "",
             dataConsulta: "",
-            idStatus: "",
+            IdStatus: "",
             listaConsultas: []
         };
     }
@@ -27,38 +27,51 @@ class Consultas extends Component {
             .catch((erro) => console.log(erro))
     }
 
-    // atualizaEstadoProntuario(event) {
-    //     this.setState({ idProntuarioNavigation: event.target.value });
-    // }
+    atualizaEstadoProntuario(event) {
+        this.setState({ IdProntuario: event.target.value });
+    }
 
-    // atualizaEstadoMedico(event) {
-    //     this.setState({ idMedicoNavigation: event.target.value });
-    // }
+    atualizaEstadoMedico(event) {
+        this.setState({ IdMedico: event.target.value });
+    }
 
-    // atualizaEstadoData(event) {
-    //     this.setState({ dataConsulta: event.target.value });
-    // }
+    atualizaEstadoData(event) {
+        this.setState({ dataConsulta: event.target.value });
+    }
 
-    // atualizaEstadoStatus(event) {
-    //     this.setState({ idStatusNavigation: event.target.value });
-    // }
+    atualizaEstadoStatus(event) {
+        this.setState({ IdStatus: event.target.value });
+    }
 
-    // atualizaEstadoDescricao(event) {
-    //     this.setState({ descricao: event.target.value });
-    // }
+    atualizaEstadoDescricao(event) {
+        this.setState({ descricao: event.target.value });
+    }
 
-    cadastrarConsultas() {
+    cadastrarConsultas(event) {
+
+        event.preventDefault();
+
         //feth faz a conexão com a api
-        fetch('http://192.168.4.112:5000/api/eventos', {
-            method: 'POST', body: JSON.stringify({
-                idProntuarioNavigation: this.state.idProntuarioNavigation, idMedicoNavigation: this.state.idMedicoNavigation, 
-                dataConsulta: this.state.dataConsulta, idStatusNavigation: this.state.idStatusNavigation,
-                 descricao: this.state.descricao
-            }), headers: { 'Content-Type': 'application/json' },
-
+        fetch('http://localhost:5000/api/consulta', {
+            method: 'POST'
+            ,headers: { 
+                'Content-Type': 'application/json','Authorization': 
+                `Bearer ${localStorage.getItem("Usuario-MedGroup")}` 
+            }
+            ,body: JSON.stringify({
+                IdProntuario: this.state.IdProntuario, 
+                IdMedico: this.state.IdMedico,
+                dataConsulta: this.state.dataConsulta, 
+                IdStatus: this.state.IdStatus,
+                descricao: this.state.descricao
+            })
         })
             .then(resposta => resposta.json())
-            .then(data => console.log(data))
+            .then(data => {console.log(data);
+                if (data.status === 200) {
+                    this.props.push("/");
+                }
+            })
             .catch((erro) => console.log(erro))
     }
 
@@ -124,27 +137,28 @@ class Consultas extends Component {
                             </table>
 
                         </div>
-                        {/* /* <div className="cadastrar-consultas">
-                        <h2 className="h2consultas">Cadastrar Consultas</h2>
+                        <div className="cadastrar-consultas">
+                            <h2 className="h2consultas">Cadastrar Consultas</h2>
 
 
                             <form onSubmit={this.cadastrarConsultas.bind(this)}>
                                 <div className="cont">
-                                    <h3>Nome do Paciente</h3>
+                                    <h3>Paciente</h3>
                                     <input
                                         type="text"
                                         id="nome-paciente"
-                                        value={this.idProntuarioNavigation}
+                                        value={this.IdProntuario}
                                         onChange={this.atualizaEstadoProntuario.bind(this)}
-                                        placeholder="Nome paciente"
+                                        placeholder="ID paciente"
+                                        
                                     />
-                                    <h3>Nome do Medico</h3>
+                                    <h3>Medico</h3>
                                     <input
                                         type="text"
                                         id="nome-medico"
-                                        value={this.idMedicoNavigation}
+                                        value={this.IdMedico}
                                         onChange={this.atualizaEstadoMedico.bind(this)}
-                                        placeholder="Nome medico"
+                                        placeholder="ID medico"
                                     />
                                     <h3>Data da consulta</h3>
                                     <input
@@ -159,7 +173,7 @@ class Consultas extends Component {
                                     <input
                                         type="text"
                                         id="Status"
-                                        value={this.idStatusNavigation}
+                                        value={this.IdStatus}
                                         onChange={this.atualizaEstadoStatus.bind(this)}
                                         placeholder="Status da consulta"
                                     />
@@ -170,10 +184,10 @@ class Consultas extends Component {
                                         id="descricao"
                                         value={this.descricao}
                                         onChange={this.atualizaEstadoDescricao.bind(this)}
-                                        placeholder="Status da consulta"
+                                        placeholder="descrição dos sintomas"
                                     />
-                                    
-                                    <button type="submit"> Cadastrar 
+
+                                    <button type="submit"> Cadastrar
                                     </button>
 
 
@@ -183,8 +197,8 @@ class Consultas extends Component {
 
 
 
-                        </div> */
-                     }
+                        </div>
+                        }
                     </section>
                 </main>
             </div>

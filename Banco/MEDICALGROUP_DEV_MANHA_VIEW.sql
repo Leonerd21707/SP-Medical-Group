@@ -20,3 +20,5 @@ GO;
 exec calcular_idade
 
 SELECT * FROM TIPO_USUARIO
+
+select * from consulta

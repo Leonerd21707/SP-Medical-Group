@@ -18,6 +18,7 @@ namespace SP.Medical.Group.Manha.Repositories
             using (MedGroupContext ctx = new MedGroupContext())
             {
                 ctx.Consulta.Add(consulta);
+                //ctx.Consulta.Include(f => f.IdProntuarioNavigation).Include(m => m.IdMedicoNavigation).Include(s => s.IdStatusNavigation);
                 ctx.SaveChanges();
             } 
         }
