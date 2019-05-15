@@ -35,7 +35,7 @@ class App extends Component {
         if (data.status === 200) {
           console.log(data);
           localStorage.setItem("Usuario-MedGroup", data.data.token);
-          this.props.history.push("/Usuarios");
+          this.props.history.push("/Consultas");
         }
       })
       .catch(erro => {

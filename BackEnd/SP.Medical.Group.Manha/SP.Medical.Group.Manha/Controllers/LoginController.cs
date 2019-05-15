@@ -47,7 +47,8 @@ namespace SP.Medical.Group.Manha.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Email, User.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, User.Id.ToString()),
-                    new Claim(ClaimTypes.Role, User.IdTipoNavigation.Nome.ToString())
+                    new Claim(ClaimTypes.Role, User.IdTipoNavigation.Nome.ToString()),
+                    new Claim("Role", User.IdTipoNavigation.Nome.ToString())
                 };
 
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Medical-Group-chave"));

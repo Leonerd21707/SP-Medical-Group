@@ -7,7 +7,6 @@ import Usuarios from './Pages/Usuarios/Usuarios';
 import * as serviceWorker from './serviceWorker';
 import { usuarioAutenticado } from "../src/Services/auth";
 import Consultas from './Pages/Consultas/Consultas';
-import ConsultasMedico from './Pages/Consultas/ConsultasMedico'
 
 
 ReactDOM.render(<App />, document.getElementById('root'));
@@ -28,7 +27,6 @@ const routing = (
         <Route exact path="/" component={App} />
         <Route exact path="/usuarios" component={Usuarios} />
         <Route exact path="/consultas" component={Consultas} />
-        <Route exact path="/consultas/Medico" component={ConsultasMedico} />
 
       </Switch>
     </div>
