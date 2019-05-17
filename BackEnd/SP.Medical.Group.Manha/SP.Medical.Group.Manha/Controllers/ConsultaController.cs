@@ -34,6 +34,7 @@ namespace SP.Medical.Group.Manha.Controllers
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
                     return Ok(ConsultasRepository.Consultas( IdBuscado));
+
                 }
             }
             catch(Exception XS) 
@@ -75,12 +76,15 @@ namespace SP.Medical.Group.Manha.Controllers
         }
 
         //Lista todas as consultas do medico
-        [Authorize (Roles ="Médico")]
+        [Authorize (Roles ="Medico")]
         [HttpGet("medico/{IdBuscado}")]
         public IActionResult GetConsultaMedico(int IdBuscado)
         {
             try
             {
+                //Todo: Buscar o id do medico a partir do id do usuario
+                //Passar como parametro o id do medico no metodo
+
                 return Ok(ConsultasRepository.ConsultaMedico( IdBuscado));
             }
             catch 

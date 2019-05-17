@@ -4,6 +4,7 @@ import "../../assets/css/Home.css";
 import logo from "../../assets/img/icon-login.png";
 import Usuarios from '../Usuarios/Usuarios';
 import Axios from "axios";
+import { jwt } from '../../Services/jwt.js';
 
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
         if (data.status === 200) {
           console.log(data);
           localStorage.setItem("Usuario-MedGroup", data.data.token);
+          
           this.props.history.push("/Consultas");
         }
       })
