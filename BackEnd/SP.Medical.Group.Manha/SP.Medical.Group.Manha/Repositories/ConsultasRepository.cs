@@ -24,11 +24,11 @@ namespace SP.Medical.Group.Manha.Repositories
         }
 
         //Lista as consultas do medico
-        public List<Consulta> ConsultaMedico(int IdBuscado )
+        public List<Consulta> ConsultaMedico(int IdBuscado)
         {           
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
-                    return ctx.Consulta.Where(c => c.IdMedicoNavigation.Id == IdBuscado).Include(c => c.IdMedicoNavigation).Include(a => a.IdProntuarioNavigation).Include(s => s.IdStatusNavigation).ToList();
+                    return ctx.Consulta.Where(c => c.IdMedico == IdBuscado).Include(m => m.IdMedicoNavigation ).Include(a => a.IdProntuarioNavigation).Include(s => s.IdStatusNavigation).ToList();
                 }
         }
 
@@ -50,7 +50,7 @@ namespace SP.Medical.Group.Manha.Repositories
                 }
         }
 
-        //Atualiza os dados da consulta
+        //Atualiza os dados da consulta 
         public void Update(Consulta consulta)
         {
             using (MedGroupContext ctx = new MedGroupContext())

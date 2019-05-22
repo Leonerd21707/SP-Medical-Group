@@ -79,9 +79,9 @@ namespace SP.Medical.Group.Manha.Domains
                     .HasMaxLength(300)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IdMedico).HasColumnName("ID_MEDICO");
+                entity.Property(e => e.IdMedico).HasColumnName("ID_MEDICOS");
 
-                entity.Property(e => e.IdProntuario).HasColumnName("ID_PRONTUARIO");
+                entity.Property(e => e.IdProntuario).HasColumnName("ID_PRONTUARIOS");
 
                 entity.Property(e => e.IdStatus).HasColumnName("ID_STATUS");
 
@@ -118,7 +118,7 @@ namespace SP.Medical.Group.Manha.Domains
             {
                 entity.ToTable("MEDICO");
 
-                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID_USUARIO");
 
                 entity.Property(e => e.Crm)
                     .IsRequired()
@@ -130,7 +130,7 @@ namespace SP.Medical.Group.Manha.Domains
 
                 entity.Property(e => e.IdEspecializacao).HasColumnName("ID_ESPECIALIZACAO");
 
-                entity.Property(e => e.IdUsuario).HasColumnName("ID_USUARIO");
+             
 
                 entity.Property(e => e.Nome)
                     .IsRequired()
@@ -150,7 +150,7 @@ namespace SP.Medical.Group.Manha.Domains
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Medico)
-                    .HasForeignKey(d => d.IdUsuario)
+                    .HasForeignKey(d => d.Id)
                     .HasConstraintName("FK__MEDICO__ID_USUAR__73852659");
             });
 
@@ -158,7 +158,7 @@ namespace SP.Medical.Group.Manha.Domains
             {
                 entity.ToTable("PRONTUARIO");
 
-                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID_USUARIO");
 
                 entity.Property(e => e.Cpf)
                     .IsRequired()
@@ -176,7 +176,7 @@ namespace SP.Medical.Group.Manha.Domains
                     .HasMaxLength(250)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IdUsuario).HasColumnName("ID_USUARIO");
+             
 
                 entity.Property(e => e.Nome)
                     .IsRequired()
@@ -198,7 +198,7 @@ namespace SP.Medical.Group.Manha.Domains
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Prontuario)
-                    .HasForeignKey(d => d.IdUsuario)
+                    .HasForeignKey(d => d.Id)
                     .HasConstraintName("FK__PRONTUARI__ID_US__7755B73D");
             });
 

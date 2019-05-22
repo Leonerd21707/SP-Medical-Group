@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SP.Medical.Group.Manha.Domains;
 using SP.Medical.Group.Manha.Interfaces;
 using SP.Medical.Group.Manha.Repositories;
@@ -26,14 +27,15 @@ namespace SP.Medical.Group.Manha.Controllers
         
         // Lista todas as consultas agendadas
         [Authorize(Roles = "Administrador")]
-        [HttpGet("todos")]
+        [HttpGet("{IdBuscado}/todos")]
         public IActionResult Get(int IdBuscado)
         {
             try
             {
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
-                    return Ok(ConsultasRepository.Consultas( IdBuscado));
+                    
+                    return Ok(ctx.Consulta.ToList());
 
                 }
             }
@@ -76,7 +78,7 @@ namespace SP.Medical.Group.Manha.Controllers
         }
 
         //Lista todas as consultas do medico
-        [Authorize (Roles ="Medico")]
+        [Authorize (Roles = "Medico")]
         [HttpGet("medico/{IdBuscado}")]
         public IActionResult GetConsultaMedico(int IdBuscado)
         {

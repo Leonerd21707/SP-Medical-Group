@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SP.Medical.Group.Manha.Domains
 {
@@ -11,8 +12,9 @@ namespace SP.Medical.Group.Manha.Domains
             Prontuario = new HashSet<Prontuario>();
         }
 
+        [Key]
         public int Id { get; set; }
-        public int? IdTipo { get; set; }
+        public int IdTipo { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
 
