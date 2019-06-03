@@ -28,7 +28,7 @@ namespace SP.Medical.Group.Manha.Repositories
         {           
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
-                    return ctx.Consulta.Where(c => c.IdMedico == IdBuscado).Include(m => m.IdMedicoNavigation ).Include(a => a.IdProntuarioNavigation).Include(s => s.IdStatusNavigation).ToList();
+                    return ctx.Consulta.Where(c => c.IdMedicoNavigation.Usuario.Id == IdBuscado).Include(m => m.IdMedicoNavigation ).Include(a => a.IdProntuarioNavigation).Include(s => s.IdStatusNavigation).ToList();
                 }
         }
 

@@ -6,6 +6,7 @@ import {
   ImageBackground
 } from 'react-native';
 import api from "../SpMedGroup/src/services/api";
+import { white } from 'ansi-colors';
 
 
 export default class App extends Component {
@@ -71,7 +72,7 @@ export default class App extends Component {
             style={styles.button}
             onPress={this._realizarLogin}
           >
-            <Text style={styles.buttonT}>Sign In</Text>
+            <Text style={StyleSheet.create({fontSize: 20})}>Sign In</Text>
           </TouchableOpacity>
 
         </View>
@@ -110,7 +111,8 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: 'green',
     
-  }
+  },
+
 
   
 });

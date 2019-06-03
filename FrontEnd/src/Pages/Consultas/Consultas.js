@@ -228,7 +228,6 @@ class Consultas extends Component {
 
         }
         if (jwt().Role === "Medico") {
-
             return (
                 <div className="Consultas">
                     <header className="Cabecalho-Principal">
@@ -264,6 +263,7 @@ class Consultas extends Component {
 
                                 <tbody id="tabela-lista-corpo">
                                     {
+
                                         this.state.listaConsultasMedico.map(function (consMed) {
                                             return (
                                                 <tr key={consMed.id}>
@@ -288,11 +288,9 @@ class Consultas extends Component {
 
                 </div>
             );
-        } else {
-            return (
-                <h1>Funciona </h1>
-            )
         }
+
+
     }
 
 
