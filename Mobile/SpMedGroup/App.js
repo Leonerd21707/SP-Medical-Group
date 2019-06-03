@@ -72,7 +72,7 @@ export default class App extends Component {
             style={styles.button}
             onPress={this._realizarLogin}
           >
-            <Text style={StyleSheet.create({fontSize: 20})}>Sign In</Text>
+            <Text style={StyleSheet.create({fontSize: 20 })}>Sign In</Text>
           </TouchableOpacity>
 
         </View>

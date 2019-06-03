@@ -2,7 +2,7 @@ USE SP_MEDIC_GROUP_DEV_MANHA
 
 select * from MEDICO
 
-SELECT * FROM TIPO_USUARIO
+SELECT * FROM USUARIO
 
 --Retorna à quantidade de médicos de uma determinada especialidade
 SELECT COUNT(*) AS ID_ESPECIALIZACAO FROM MEDICO WHERE ID_ESPECIALIZACAO='17'

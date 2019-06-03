@@ -10,7 +10,7 @@ namespace SP.Medical.Group.Manha.Interfaces
     {
         List<Consulta> Consultas(int IdBuscado);
 
-        List<Consulta> ConsultaMedico(int IdBuscado);
+        List<Consulta> ConsultaMedico(int IdMedico);
 
         List<Consulta> ConsultaPaciente(int IdBuscado);
 
