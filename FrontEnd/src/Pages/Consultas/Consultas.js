@@ -18,12 +18,13 @@ class Consultas extends Component {
             dataConsulta: "",
             IdStatus: "",
             listaConsultas: [],
-            listaConsultasMedico: []
+            listaConsultasMedico: [],
+            listaConsultasPaciente: []
         };
     }
 
     listaConsultas() {
-        fetch("http://localhost:5000/api/consulta/todos", { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
+        fetch("http://localhost:5000/api/consulta/todos/"+ jwt().jti, { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
             .then(console.log(`Bearer ${localStorage.getItem("Usuario-MedGroup")}`))
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaConsultas: data }, console.log(data)))
@@ -33,6 +34,15 @@ class Consultas extends Component {
     listaConsultasMedico() {
         alert("http://localhost:5000/api/consulta/medico/" + jwt().jti);
         fetch("http://localhost:5000/api/consulta/medico/" + jwt().jti, { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
+            .then(console.log(`Bearer ${localStorage.getItem("Usuario-MedGroup")}`))
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ listaConsultasMedico: data }, console.log("Medico " + data)))
+            .catch((erro) => console.log(erro))
+    }
+
+    listaConsultasPaciente() {
+        alert("http://localhost:5000/api/consulta/paciente/" + jwt().jti);
+        fetch("http://localhost:5000/api/consulta/paciente/" + jwt().jti, { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
             .then(console.log(`Bearer ${localStorage.getItem("Usuario-MedGroup")}`))
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaConsultasMedico: data }, console.log("Medico " + data)))
@@ -200,11 +210,12 @@ class Consultas extends Component {
                                     <tbody id="tabela-lista-corpo">
                                         {
                                             this.state.listaConsultas.map(function (consultas) {
+                                                console.log(consultas)
                                                 return (
                                                     <tr key={consultas.id}>
                                                         <td>{consultas.id}</td>
-                                                        <td>{consultas.idProntuarioNavigation.nome}</td>
-                                                        <td>{consultas.idMedicoNavigation.nome}</td>
+                                                        <td>{consultas.idProntuariosNavigation.nome}</td>
+                                                        <td>{consultas.idMedicosNavigation.nome}</td>
                                                         <td>{consultas.dataConsulta.split("T")[0]}</td>
                                                         <td>{consultas.idStatusNavigation.nome}</td>
                                                         <td>{consultas.descricao}</td>
@@ -268,8 +279,71 @@ class Consultas extends Component {
                                             return (
                                                 <tr key={consMed.id}>
                                                     <td>{consMed.id}</td>
-                                                    <td>{consMed.idProntuarioNavigation.nome}</td>
-                                                    <td>{consMed.idMedicoNavigation.nome}</td>
+                                                    <td>{consMed.idProntuariosNavigation.nome}</td>
+                                                    <td>{consMed.idMedicosNavigation.nome}</td>
+                                                    <td>{consMed.dataConsulta.split("T")[0]}</td>
+                                                    <td>{consMed.idStatusNavigation.nome}</td>
+                                                    <td>{consMed.descricao}</td>
+
+                                                </tr>
+                                            );
+                                        })
+                                    }
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </main>
+
+                </div>
+            );
+        }
+
+        if (jwt().Role === "Paciente") {
+            return (
+                <div className="Consultas">
+                    <header className="Cabecalho-Principal">
+                        <div className="container">
+                            <nav className="cabecalho-principal-nav">
+                                <div className="abas"><a href="/">Login</a></div>
+                                <div className="abas"><a>clinicas</a></div>
+                                <div className="abas"><a href="/usuarios">Usuarios</a></div>
+                                <div className="abas"><a>Prontuario</a></div>
+                                <div className="abas"><a>Medicos</a></div>
+
+                            </nav>
+                        </div>
+                    </header>
+
+                    <main>
+                        <div className="ListaConsultas">
+                            <div className="logoConsultas">
+                                <img src={logo} /><h2 className="h2consultas">Listar Consultas</h2>
+                            </div>
+
+                            <table className="tabela-lista">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Paciente</th>
+                                        <th>Medico</th>
+                                        <th>Data</th>
+                                        <th>Status</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tabela-lista-corpo">
+                                    {
+
+                                        this.state.listaConsultasPaciente.map(function (consMed) {
+                                            return (
+                                                <tr key={consMed.id}>
+                                                    <td>{consMed.id}</td>
+                                                    <td>{consMed.idProntuariosNavigation.nome}</td>
+                                                    <td>{consMed.idMedicosNavigation.nome}</td>
                                                     <td>{consMed.dataConsulta.split("T")[0]}</td>
                                                     <td>{consMed.idStatusNavigation.nome}</td>
                                                     <td>{consMed.descricao}</td>

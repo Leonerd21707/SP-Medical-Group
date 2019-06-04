@@ -12,11 +12,10 @@ namespace SP.Medical.Group.Manha.Domains
             Consulta = new HashSet<Consulta>();
         }
 
-        [ForeignKey("Id")]
-        public int Id { get; set; }
         public string Crm { get; set; }
         public string Nome { get; set; }
         public int IdEspecializacao { get; set; }
+        public int IdUsuario { get; set; }
         public int IdClinica { get; set; }
 
         public virtual Usuario Usuario { get; set; }

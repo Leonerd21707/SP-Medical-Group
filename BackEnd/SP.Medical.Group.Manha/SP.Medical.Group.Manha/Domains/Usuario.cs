@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace SP.Medical.Group.Manha.Domains
 {
@@ -8,18 +7,17 @@ namespace SP.Medical.Group.Manha.Domains
     {
         public Usuario()
         {
-            Medico = new HashSet<Medico>();
-            Prontuario = new HashSet<Prontuario>();
+            ConsultaIdMedicosNavigation = new HashSet<Consulta>();
+            ConsultaIdProntuariosNavigation = new HashSet<Consulta>();
         }
 
-        [Key]
         public int Id { get; set; }
         public int IdTipo { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
 
         public TipoUsuario IdTipoNavigation { get; set; }
-        public ICollection<Medico> Medico { get; set; }
-        public ICollection<Prontuario> Prontuario { get; set; }
+        public ICollection<Consulta> ConsultaIdMedicosNavigation { get; set; }
+        public ICollection<Consulta> ConsultaIdProntuariosNavigation { get; set; }
     }
 }

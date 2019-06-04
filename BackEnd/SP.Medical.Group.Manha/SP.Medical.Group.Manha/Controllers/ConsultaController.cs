@@ -27,7 +27,7 @@ namespace SP.Medical.Group.Manha.Controllers
         
         // Lista todas as consultas agendadas
         [Authorize(Roles = "Administrador")]
-        [HttpGet("{IdBuscado}/todos")]
+        [HttpGet("todos/{IdBuscado}")]
         public IActionResult Get(int IdBuscado)
         {
             try
@@ -35,7 +35,7 @@ namespace SP.Medical.Group.Manha.Controllers
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
                     
-                    return Ok(ctx.Consulta.ToList());
+                    return Ok(ctx.Consulta.Include(c => c.IdMedicosNavigation).Include(c => c.IdProntuariosNavigation).Include(c => c.IdStatusNavigation).ToList());
 
                 }
             }
@@ -79,19 +79,19 @@ namespace SP.Medical.Group.Manha.Controllers
 
         //Lista todas as consultas do medico
         [Authorize (Roles = "Medico")]
-        [HttpGet("medico/{IdBuscado}")]
-        public IActionResult GetConsultaMedico(int IdBuscado)
+        [HttpGet("medico/{IdMedico}")]
+        public IActionResult GetConsultaMedico(int IdMedico)
         {
             try
             {
                 //Todo: Buscar o id do medico a partir do id do usuario
                 //Passar como parametro o id do medico no metodo
 
-                return Ok(ConsultasRepository.ConsultaMedico( IdBuscado));
+                return Ok(ConsultasRepository.ConsultaMedico( IdMedico));
             }
-            catch 
+            catch (Exception E)
             {
-                return BadRequest();
+                return BadRequest(E);
             }
         }
 

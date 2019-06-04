@@ -28,7 +28,7 @@ namespace SP.Medical.Group.Manha.Repositories
         {           
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
-                    return ctx.Consulta.Where(c => c.IdMedicoNavigation.Usuario.Id == IdMedico).Include(m => m.IdMedicoNavigation ).Include(a => a.IdProntuarioNavigation).Include(s => s.IdStatusNavigation).ToList();
+                    return ctx.Consulta.Where(c => c.IdMedicosNavigation.Id == IdMedico).Include(c => c.IdMedicosNavigation).Include(c => c.IdProntuariosNavigation).Include(s => s.IdStatusNavigation).ToList();
                 }
         }
 
@@ -37,7 +37,7 @@ namespace SP.Medical.Group.Manha.Repositories
         {
             using (MedGroupContext ctx = new MedGroupContext())
             {
-                return ctx.Consulta.Where(c => c.IdProntuarioNavigation.Id == IdBuscado).ToList();
+                return ctx.Consulta.Where(c => c.IdProntuariosNavigation.Id == IdBuscado).ToList();
             }
         }
 
@@ -46,7 +46,7 @@ namespace SP.Medical.Group.Manha.Repositories
                 using (MedGroupContext ctx = new MedGroupContext())
                 {
                 //return ctx.Consulta.ToList();
-                return ctx.Consulta.Include(t => t.IdProntuarioNavigation).Include(m => m.IdMedicoNavigation).Include(s => s.IdStatusNavigation).ToList();
+                return ctx.Consulta.Include(t => t.IdProntuariosNavigation).Include(m => m.IdMedicosNavigation).Include(s => s.IdStatusNavigation).ToList();
                 }
         }
 
