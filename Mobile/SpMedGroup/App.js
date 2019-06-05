@@ -1,12 +1,13 @@
 import React, { Component } from './node_modules/react';
 import {
-  StyleSheet, Text, View,
-  TextInput, TouchableOpacity, AsyncStorage,
-  Image,
-  ImageBackground
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  AsyncStorage
 } from 'react-native';
 import api from "../SpMedGroup/src/services/api";
-import { white } from 'ansi-colors';
 
 
 export default class App extends Component {
@@ -15,8 +16,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       email: '',
-      senha: '',
-      erroMensagem: ''
+      senha: ''
     }
   }
 
@@ -28,7 +28,7 @@ export default class App extends Component {
 
     const token = resposta.data.token;
     await AsyncStorage.setItem("Usuario-MedGroup", token);
-    alert("voce esta logado" + {token});
+    this.props.navigation.navigate("MainNavigator");
   };
 
 
@@ -72,7 +72,7 @@ export default class App extends Component {
             style={styles.button}
             onPress={this._realizarLogin}
           >
-            <Text style={StyleSheet.create({fontSize: 20 })}>Sign In</Text>
+            <Text style={styles.fontsT}>Sign In</Text>
           </TouchableOpacity>
 
         </View>
@@ -102,17 +102,25 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'white'
   },
+  fontsT: {
+    fontSize: 20,
+    color: 'white',
+    textAlign: 'center',
+
+  },
   campos: {
     height: 60,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+
   },
   button: {
-    marginTop:10,
+    marginTop: 10,
+    padding: '1%',
     height: 40,
     backgroundColor: 'green',
-    
+
   },
 
 
-  
+
 });

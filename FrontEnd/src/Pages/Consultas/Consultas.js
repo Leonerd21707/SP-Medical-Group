@@ -32,7 +32,6 @@ class Consultas extends Component {
     }
 
     listaConsultasMedico() {
-        alert("http://localhost:5000/api/consulta/medico/" + jwt().jti);
         fetch("http://localhost:5000/api/consulta/medico/" + jwt().jti, { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
             .then(console.log(`Bearer ${localStorage.getItem("Usuario-MedGroup")}`))
             .then(resposta => resposta.json())
@@ -41,7 +40,6 @@ class Consultas extends Component {
     }
 
     listaConsultasPaciente() {
-        alert("http://localhost:5000/api/consulta/paciente/" + jwt().jti);
         fetch("http://localhost:5000/api/consulta/paciente/" + jwt().jti, { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
             .then(console.log(`Bearer ${localStorage.getItem("Usuario-MedGroup")}`))
             .then(resposta => resposta.json())
@@ -73,7 +71,7 @@ class Consultas extends Component {
 
         event.preventDefault();
 
-        fetch('http://localhost:5000/api/consulta', {
+        fetch('https://localhost:500/api/consulta', {
             method: 'POST'
             , headers: {
                 'Content-Type': 'application/json', 'Authorization':
@@ -108,7 +106,6 @@ class Consultas extends Component {
 
     render() {
         if (jwt().Role === "Administrador") {
-
             return (
                 <div className="Consultas">
                     <header className="Cabecalho-Principal">
@@ -214,8 +211,8 @@ class Consultas extends Component {
                                                 return (
                                                     <tr key={consultas.id}>
                                                         <td>{consultas.id}</td>
-                                                        <td>{consultas.idProntuariosNavigation.nome}</td>
-                                                        <td>{consultas.idMedicosNavigation.nome}</td>
+                                                        <td>{consultas.idProntuariosNavigation.id}</td>
+                                                        <td>{consultas.idMedicosNavigation.id}</td>
                                                         <td>{consultas.dataConsulta.split("T")[0]}</td>
                                                         <td>{consultas.idStatusNavigation.nome}</td>
                                                         <td>{consultas.descricao}</td>
