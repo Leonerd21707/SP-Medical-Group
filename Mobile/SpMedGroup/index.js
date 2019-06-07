@@ -6,5 +6,5 @@ import Navigator from "./src";
 
 AppRegistry.registerComponent(appName, () => App);
 
-cAppRegistry.registerComponent(appName, () => Navigator);
+AppRegistry.registerComponent(appName, () => Navigator);
 

@@ -14,6 +14,7 @@ const AuthStack = createStackNavigator({App});
 
 const MainNavigator = createBottomTabNavigator(
   {
+    App,
     Main
   },
   {

@@ -5,12 +5,16 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  Image
 } from 'react-native';
 import api from "../SpMedGroup/src/services/api";
 
 
 export default class App extends Component {
+  static navigationOptions = {
+    header: null
+  };
 
   constructor(props) {
     super(props);
@@ -19,6 +23,12 @@ export default class App extends Component {
       senha: ''
     }
   }
+
+  _verificarLogin = async() => {
+    if (await AsyncStorage.getItem("Usuario-MedGroup") != null) {
+      this.props.navigation.navigate("MainNavigator");
+    }
+  } 
 
   _realizarLogin = async () => {
     const resposta = await api.post("/login", {
@@ -31,37 +41,32 @@ export default class App extends Component {
     this.props.navigation.navigate("MainNavigator");
   };
 
+  componentDidMount() {
+    this._verificarLogin();
+  }
 
   render() {
     return (
       <View
         style={styles.body}
       >
-        <View
-        >
 
-          <Text
-            style={styles.Top}>Login</Text>
-        </View>
+
+
+        <Image
+          source={require("./src/assets/Img/icon-login.png")}
+          style={styles.image}
+        />
+
+
         <View style={styles.login}>
 
-          <Text
-            style={styles.fonts}
-          >
-            Email
-        </Text>
           <TextInput
             style={styles.campos}
             placeholder="Informe seu email"
             onChangeText={email => this.setState({ email })}
 
           />
-
-          <Text
-            style={styles.fonts}
-          >
-            Senha
-        </Text>
           <TextInput
             style={styles.campos}
             placeholder="Informe sua senha"
@@ -109,6 +114,7 @@ const styles = StyleSheet.create({
 
   },
   campos: {
+    margin: 10,
     height: 60,
     backgroundColor: 'white',
 
@@ -120,6 +126,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
 
   },
+
+  image: {
+    marginLeft: 110,
+    marginTop: 50,
+    width: 120,
+    height: 120
+
+  }
 
 
 
