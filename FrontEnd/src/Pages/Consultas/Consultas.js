@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import "../../assets/css/Consultas.css"
 
 import logo from "../../assets/img/icon-login.png";
-import { usuarioAutenticado } from '../../Services/auth';
 import { _extend } from 'util';
 import { jwt } from '../../Services/jwt';
 
@@ -12,8 +11,8 @@ class Consultas extends Component {
 
         this.state = {
 
-            IdProntuario: "",
-            IdMedico: "",
+            IdProntuarios: "",
+            IdMedicos: "",
             descricao: "",
             dataConsulta: "",
             IdStatus: "",
@@ -24,7 +23,7 @@ class Consultas extends Component {
     }
 
     listaConsultas() {
-        fetch("http://localhost:5000/api/consulta/todos/"+ jwt().jti, { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
+        fetch("http://localhost:5000/api/consulta/todos/" + jwt().jti, { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
             .then(console.log(`Bearer ${localStorage.getItem("Usuario-MedGroup")}`))
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaConsultas: data }, console.log(data)))
@@ -40,7 +39,7 @@ class Consultas extends Component {
     }
 
     listaConsultasPaciente() {
-        fetch("http://localhost:5000/api/consulta/paciente/" + jwt().jti, { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
+        fetch("http://localhost:5000/api/Consulta/paciente/" + jwt().jti, { headers: { Authorization: `Bearer ${localStorage.getItem("Usuario-MedGroup")}` } })
             .then(console.log(`Bearer ${localStorage.getItem("Usuario-MedGroup")}`))
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaConsultasMedico: data }, console.log("Medico " + data)))
@@ -48,11 +47,11 @@ class Consultas extends Component {
     }
 
     atualizaEstadoProntuario(event) {
-        this.setState({ IdProntuario: event.target.value });
+        this.setState({ IdProntuarios: event.target.value });
     }
 
     atualizaEstadoMedico(event) {
-        this.setState({ IdMedico: event.target.value });
+        this.setState({ IdMedicos: event.target.value });
     }
 
     atualizaEstadoData(event) {
@@ -71,15 +70,15 @@ class Consultas extends Component {
 
         event.preventDefault();
 
-        fetch('https://localhost:500/api/consulta', {
+        fetch('http://192.168.3.72:5000/api/consulta', {
             method: 'POST'
             , headers: {
                 'Content-Type': 'application/json', 'Authorization':
                     `Bearer ${localStorage.getItem("Usuario-MedGroup")}`
             }
             , body: JSON.stringify({
-                IdProntuario: this.state.IdProntuario,
-                IdMedico: this.state.IdMedico,
+                IdProntuarios: this.state.IdProntuarios,
+                IdMedicos: this.state.IdMedicos,
                 dataConsulta: this.state.dataConsulta,
                 IdStatus: this.state.IdStatus,
                 descricao: this.state.descricao
@@ -101,6 +100,8 @@ class Consultas extends Component {
             this.listaConsultas();
         } else if (jwt().Role === "Medico") {
             this.listaConsultasMedico();
+        } else if (jwt().Role === "Paciente") {
+            this.listaConsultasPaciente();
         }
     }
 
@@ -178,15 +179,10 @@ class Consultas extends Component {
                                             type="submit"> Cadastrar
                                     </button>
 
-
                                     </div>
-
                                 </form>
-
-
-
                             </div>
-
+                            
                             <div className="ListaConsultas">
                                 <div className="logoConsultas">
                                     <img src={logo} /><h2 className="h2consultas">Listar Consultas</h2>
@@ -276,8 +272,8 @@ class Consultas extends Component {
                                             return (
                                                 <tr key={consMed.id}>
                                                     <td>{consMed.id}</td>
-                                                    <td>{consMed.idProntuariosNavigation.nome}</td>
-                                                    <td>{consMed.idMedicosNavigation.nome}</td>
+                                                    <td>{consMed.idProntuariosNavigation.id}</td>
+                                                    <td>{consMed.idMedicosNavigation.id}</td>
                                                     <td>{consMed.dataConsulta.split("T")[0]}</td>
                                                     <td>{consMed.idStatusNavigation.nome}</td>
                                                     <td>{consMed.descricao}</td>
@@ -335,15 +331,15 @@ class Consultas extends Component {
                                 <tbody id="tabela-lista-corpo">
                                     {
 
-                                        this.state.listaConsultasPaciente.map(function (consMed) {
+                                        this.state.listaConsultasPaciente.map(function (consPac) {
                                             return (
-                                                <tr key={consMed.id}>
-                                                    <td>{consMed.id}</td>
-                                                    <td>{consMed.idProntuariosNavigation.nome}</td>
-                                                    <td>{consMed.idMedicosNavigation.nome}</td>
-                                                    <td>{consMed.dataConsulta.split("T")[0]}</td>
-                                                    <td>{consMed.idStatusNavigation.nome}</td>
-                                                    <td>{consMed.descricao}</td>
+                                                <tr key={consPac.id}>
+                                                    <td>{consPac.id}</td>
+                                                    <td>{consPac.idProntuariosNavigation.id}</td>
+                                                    <td>{consPac.idMedicosNavigation.id}</td>
+                                                    <td>{consPac.dataConsulta.split("T")[0]}</td>
+                                                    <td>{consPac.idStatusNavigation.nome}</td>
+                                                    <td>{consPac.descricao}</td>
 
                                                 </tr>
                                             );

@@ -5,7 +5,7 @@ body{
     background-size: cover;
 }
 table{
-    margin-left: 24%;
+    margin-left: 30%;
     border-style: solid;
     border-color: white;
     padding: 2%;
@@ -47,10 +47,10 @@ td{
 
 .cadastrar-consultas{
     margin-top: 10%;
-    margin-left: 24%;
+    margin-left: 30%;
     border-style: solid;
     border-color: white;
-    width: 49%
+    width: 40%
     
     
 }

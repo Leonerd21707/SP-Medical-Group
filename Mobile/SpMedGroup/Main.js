@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, Image, StyleSheet, View, FlatList } from "react-native";
+import { Text, Image, StyleSheet, View, ScrollView } from "react-native";
 import api from "./src/services/api";
 
 class Main extends Component {
@@ -7,12 +7,17 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            IdProntuario: "",
+            IdMedico: "",
+            descricao: "",
+            dataConsulta: "",
+            IdStatus: "",
             listaConsultas: []
         };
     }
 
     listaConsultas = async () => {
-        const resposta = await api.get("/consulta/todos/3" );
+        const resposta = await api.get("/consulta/todos/3");
         const dadosDaApi = resposta.data;
         this.setState({ listaConsultas: dadosDaApi });
     };
@@ -21,14 +26,23 @@ class Main extends Component {
         return (
             <View style={styles.body}>
                 <View>
-                    <Text style = {styles.titulo}>
+                    <Text style={styles.titulo}>
                         Lista Consultas
                     </Text>
-                    <FlatList
-                        data={this.state.listaConsultas}
-                        keyExtractor={item => item.id}
-                        renderItem={this.renderizaItem}
-                    />
+                    <ScrollView>
+                        {
+                            this.state.listaConsultas.map(function (consulta) {
+
+                                <View key={consulta.id}>
+                                    <Text>{consulta.IdProntuario}</Text>
+                                    <Text>{consulta.IdMedico}</Text>
+                                    <Text>{consulta.IdStatus}</Text>
+                                    <Text>{consulta.descricao}</Text>
+                                </View>
+
+                            })
+                        }
+                    </ScrollView>
 
                 </View>
 
@@ -38,7 +52,7 @@ class Main extends Component {
 
     }
 
-  
+
 }
 
 const styles = StyleSheet.create({

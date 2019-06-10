@@ -13,7 +13,7 @@ class Usuarios extends Component {
         super();
 
         this.state = {
-            tipoUsuario: '',
+            tipoUsuario: "",
             Email: "",
             Senha: ""
         };
@@ -35,18 +35,21 @@ class Usuarios extends Component {
 
     cadastrarUsuario(event) {
         event.preventDefault();
-        
 
-        Axios.post("http://localhost:5000/api/usuario", 
-        {
-            tipoUsuario: this.state.tipoUsuario,
+
+        Axios.post("http://192.168.3.72:5000/api/usuario", 
+        {    
+            idTipo: parseInt(this.state.tipoUsuario),
             email: this.state.Email,
-            senha: this.state.Senha
-        }).then(resposta => resposta.json())
-        .then(data => console.log(data))
-        .catch((erro) => console.log(erro))
+            senha: this.state.Senha,
+            }, {
+                headers: {'Content-Type': 'application/json', 'Authorization': "Bearer " + localStorage.getItem("Usuario-MedGroup")},
+            }
+            ).then(resposta => resposta.json())
+            .then(data => console.log(data))
+            .catch((erro) => console.log(erro))
 
-        
+
     }
 
     render() {
@@ -71,25 +74,27 @@ class Usuarios extends Component {
                     </div>
                     <form className="formUser" onSubmit={this.cadastrarUsuario.bind(this)}>
                         <div className="containers">
-                            <h3>Tipo Usuario</h3>
-                            <select className="options" id="option__tipoUsuario"
 
-                                value={this.state.tipoUsuario}
-                                onChange={this.atualizaEstadoTipoUsuario.bind(this)}>
-                                <option value={null}>Selecione o tipo de Usuario</option>
-                                <option value={1}>Administrador</option>
-                                <option value={2}>Paciente</option>
-                                <option value={3}>Medico</option>
+                            <div className="item">
+                                <h3>Tipo de Usuario:</h3>
+                                <input
+                                    className="inpu_login"
+                                    placeholder="tipo usuario"
+                                    type="text"
+                                    value={this.state.tipoUsuario}
+                                    onChange={this.atualizaEstadoTipoUsuario.bind(this)}
+                                    name="username"
+                                    id="login_email"
+                                />
+                            </div>
 
-
-                            </select>
                             <div className="item">
                                 <h3>Email:</h3>
                                 <input
                                     className="inpu_login"
                                     placeholder="username"
                                     type="text"
-                                    value={this.state.email}
+                                    value={this.state.Email}
                                     onChange={this.atualizaEstadoEmail.bind(this)}
                                     name="username"
                                     id="login_email"
@@ -101,7 +106,7 @@ class Usuarios extends Component {
                                 <input
                                     className="input_login"
                                     placeholder="password"
-                                    value={this.state.senha}
+                                    value={this.state.Senha}
                                     onChange={this.atualizaEstadoSenha.bind(this)}
                                     type="password"
                                     name="password"

@@ -12,7 +12,7 @@ import {
 const AuthStack = createStackNavigator({App});
 
 
-const MainNavigator = createBottomTabNavigator(
+const MainNavigator = createStackNavigator(
   {
     App,
     Main
@@ -20,11 +20,12 @@ const MainNavigator = createBottomTabNavigator(
   {
     initialRouteName: "Main",
     swipeEnabled: true,
+    headerMode: "none",
     tabBarOptions: {
       showLabel: false,
       showIcon: true,
-      inactiveBackgroundColor: "#dd99ff",
-      activeBackgroundColor: "#B727FF",
+      inactiveBackgroundColor: "#df99ff",
+      activeBackgroundColor: "#B707FF",
       activeTintColor: "#FFFFFF",
       inactiveTintColor: "#FFFFFF",
       style: {
